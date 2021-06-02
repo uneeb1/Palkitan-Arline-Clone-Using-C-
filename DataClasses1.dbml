@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Database2" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database2.mdf;Integrated Security=True" SettingsObjectName="Pakistan_International_Airlines.Properties.Settings" SettingsPropertyName="Database2ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.AddFlight" Member="AddFlights">
+    <Type Name="AddFlight">
+      <Column Name="FlightNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="tb_From" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="tb_To" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Departure" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="GoingTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LandingTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FlightClass" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MultiCity" Member="MultiCities">
+    <Type Name="MultiCity">
+      <Column Name="Flight1_FlightNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Flight1_From" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Flight1_To" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Flight1_Departure" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Flight1_GoingTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Flight1_LandingTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Flight2_FlightNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Flight2_From" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Flight2_To" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Flight2_Departure" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Flight2_GoingTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Flight2_LandingTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Adult" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Chlid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Inflant" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FlightClass" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Registration_MultiCity" Member="Registration" ThisKey="Email" OtherKey="Email" Type="Registration" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OneWay" Member="OneWays">
+    <Type Name="OneWay">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FlightNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="tb_From" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="tb_To" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Departure" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Adult" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Chlid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Inflant" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FlightClass" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GoingTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LandingTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Registration_OneWay" Member="Registration" ThisKey="Email" OtherKey="Email" Type="Registration" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Registration" Member="Registrations">
+    <Type Name="Registration">
+      <Column Name="UserNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MobileNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Age" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Association Name="Registration_MultiCity" Member="MultiCities" ThisKey="Email" OtherKey="Email" Type="MultiCity" />
+      <Association Name="Registration_OneWay" Member="OneWays" ThisKey="Email" OtherKey="Email" Type="OneWay" />
+      <Association Name="Registration_RoundTrip" Member="RoundTrips" ThisKey="Email" OtherKey="Email" Type="RoundTrip" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RoundTrip" Member="RoundTrips">
+    <Type Name="RoundTrip">
+      <Column Name="RoundTrip_FlightNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RoundTrip_tb_From" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RoundTrip_tb_To" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RoundTrip_Departure" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="RoundTrip_GoingTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RoundTrip_LandingTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Return_FlightNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Return_tb_From" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Return_tb_To" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Return_Departure" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Return_GoingTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Return_LandingTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Adult" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Chlid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Inflant" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FlightClass" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Registration_RoundTrip" Member="Registration" ThisKey="Email" OtherKey="Email" Type="Registration" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
